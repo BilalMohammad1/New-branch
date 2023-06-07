@@ -10,14 +10,12 @@
             <img src="exalog.png" alt="Logo" class="logo">
         </div>
         <h1>Fusion de branches Git</h1>
-        <form action="merge.php" method="POST">
-            <label for="repository_path">Chemin du référentiel Git:</label>
-            <input type="text" name="repository_path" id="repository_path" required><br><br>
+        <form action="merge.php" method="POST" target="blank">
         
             <label for="branch1">Branche 1:</label>
             <select name="branch1" id="branch1" required>
                 <!-- Options pour les branches disponibles -->
-                <option value="../bankx-sandbox/ctchelidze_BANKX-74700_BANKX-74701_from_version/bankx-v16.15.0-max">ctchelidze_BANKX-74700_BANKX-74701_from_version/bankx-v16.15.0-max</option>
+                <option value="ctchelidze_BANKX-74700_BANKX-74701_from_version/bankx-v16.15.0-max">ctchelidze_BANKX-74700_BANKX-74701_from_version/bankx-v16.15.0-max</option>
                 <option value="other_branch">Autre branche</option>
                 <!-- Ajoutez d'autres options pour les branches -->
             </select><br><br>
@@ -25,7 +23,7 @@
             <label for="branch2">Branche 2:</label>
             <select name="branch2" id="branch2" required>
                 <!-- Options pour les branches disponibles -->
-                <option value="../bankx-sandbox/athevenet_BANKX-74845_BANKX-74846_from_version/bankx-v16.15.0-max">athevenet_BANKX-74845_BANKX-74846_from_version/bankx-v16.15.0-max</option>
+                <option value="athevenet_BANKX-74845_BANKX-74846_from_version/bankx-v16.15.0-max">athevenet_BANKX-74845_BANKX-74846_from_version/bankx-v16.15.0-max</option>
                 <option value="other_branch">Autre branche</option>
                 <!-- Ajoutez d'autres options pour les branches -->
             </select><br><br>
@@ -38,5 +36,7 @@
     </div>
 </body>
 </html>
+
+
 
 
