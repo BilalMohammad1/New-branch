@@ -31,12 +31,10 @@
             <label for="new_branch_name">Nouvelle branche:</label>
             <input type="text" name="new_branch_name" id="new_branch_name" required><br><br>
 
-            <input type="submit" value="Fusionner et obtenir les commits">
+            <input type="submit" name = "submit" value="Fusionner et obtenir les commits">
         </form>
     </div>
 </body>
 </html>
-
-
 
 
