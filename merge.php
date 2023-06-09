@@ -53,10 +53,12 @@ if (isset($_POST['submit'])) {
         } else {
             echo "<h2>La branche '$new_branch_name' existe déjà.</h2>";
         }
-
-        $command_push = "git push --set-upstream origin $new_branch_name";
+        
+        $repo_url = "https://webhook:Nzc3MDM2ODM5NzQzOjKx+GyGOlxvpdcLT0yBtfmtX7QO@bitbucket.fr.exalog.net/scm/bankx/bankx-sandbox.git";
+        $command_push = "git push --set-upstream $repo_url $new_branch_name";
         $output_push = shell_exec($command_push);
         var_dump($output_push);
+        
 
         // Vérifier si le push a réussi
         if (strpos($output_push, 'Everything up-to-date') !== false) {
