@@ -2,6 +2,13 @@
 var_dump($_POST['submit']);
 var_dump($_POST['new_branch_name']);
 if (isset($_POST['submit'])) {
+    
+    // Cloner le référentiel Git avec la clé d'accès spécifiée
+    $repo_url = "https://webhook:Nzc3MDM2ODM5NzQzOjKx+GyGOlxvpdcLT0yBtfmtX7QO@bitbucket.fr.exalog.net/scm/bankx/bankx-sandbox.git";
+    $command_clone = "git clone $repo_url";
+    $output_clone = shell_exec($command_clone);
+    var_dump($output_clone);
+
     $repository_path = "/apache/htdocs/exalogv428/bmohammad/Fusion-branche/bankx-sandbox"; // Chemin du référentiel Git
 
     // Vérifier si le répertoire spécifié est un référentiel Git valide
@@ -20,10 +27,19 @@ if (isset($_POST['submit'])) {
         var_dump($output_check_branch);
 
         if (empty($output_check_branch)) {
+
+            $command_checkout_branch1 = "git checkout $branch1";
+            $output_check_branch1 = shell_exec($command_checkout_branch1);
+            var_dump($output_check_branch1);
+
+            $command_checkout_branch2 = "git checkout $branch2";
+            $output_check_branch2 = shell_exec($command_checkout_branch2);
+            var_dump($output_check_branch2);
+            
             // Créer une nouvelle branche à partir de branch1
-            $command_create_branch = "git branch $new_branch_name $branch1";
-            $output_create_branch = shell_exec($command_create_branch);
-            var_dump($output_create_branch);
+            //$command_create_branch = "git branch $new_branch_name";
+            //$output_create_branch = shell_exec($command_create_branch);
+            //var_dump($output_create_branch);
 
             // Basculer vers la nouvelle branche
             $command_checkout_branch = "git checkout $new_branch_name";
@@ -37,7 +53,7 @@ if (isset($_POST['submit'])) {
 
             // Effectuer le commit des modifications de fusion
             $commit_message = "Commit de fusion de $branch1 avec $branch2";
-            $command_commit = "git commit -am '$commit_message'";
+            $command_commit = "git commit -am "$commit_message"";
             $output_commit = shell_exec($command_commit);
             var_dump($output_commit);
 
@@ -54,10 +70,13 @@ if (isset($_POST['submit'])) {
             echo "<h2>La branche '$new_branch_name' existe déjà.</h2>";
         }
         
-        $repo_url = "https://webhook:Nzc3MDM2ODM5NzQzOjKx+GyGOlxvpdcLT0yBtfmtX7QO@bitbucket.fr.exalog.net/scm/bankx/bankx-sandbox.git";
-        $command_push = "git push --set-upstream $repo_url $new_branch_name";
+
+        $command_push = "git push --set-upstream origin $new_branch_name";
         $output_push = shell_exec($command_push);
         var_dump($output_push);
+        $repo_url2 = "https://webhook:Nzc3MDM2ODM5NzQzOjKx+GyGOlxvpdcLT0yBtfmtX7QO@bitbucket.fr.exalog.net/scm/bankx/bankx-sandbox.git";
+        $output_url = shell_exec($repo_url2);
+        var_dump($output_url);
         
 
         // Vérifier si le push a réussi
