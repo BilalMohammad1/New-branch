@@ -3,6 +3,33 @@ var_dump($_POST['submit']);
 var_dump($_POST['new_branch_name']);
 var_dump($_POST['branch1']);
 var_dump($_POST['branch2']);
+/*
+/** 
+ * Fonction récursive pour supprimer un répertoire et son contenu
+ * @param string $dir Chemin vers le répertoire
+ * @return bool True si la suppression est réussie, sinon False
+ 
+function deleteDirectory($dir) {
+    if (!file_exists($dir)) {
+        return true;
+    }
+
+    if (!is_dir($dir)) {
+        return unlink($dir);
+    }
+
+    foreach (scandir($dir) as $item) {
+        if ($item == '.' || $item == '..') {
+            continue;
+        }
+
+        if (!deleteDirectory($dir . DIRECTORY_SEPARATOR . $item)) {
+            return false;
+        }
+    }
+
+    return rmdir($dir);
+}*/
 
 if (isset($_POST['submit'])) {
 
@@ -22,6 +49,18 @@ if (isset($_POST['submit'])) {
     }else{
         echo"<h2> Le répertoire a bien été cloné.</h2>";
     }
+    /*if (is_dir($repository_path)) {
+        // Supprimer le répertoire et son contenu récursivement
+        $success = deleteDirectory($repository_path);
+        if ($success) {
+            echo "Répertoire cloné supprimé avec succès.";
+        } else {
+            echo "Une erreur s'est produite lors de la suppression du répertoire cloné.";
+        }
+    } else {
+        echo "Le répertoire cloné n'existe pas.";
+    }*/
+
     chdir($repository_path);
 
     // Vérifier si le répertoire spécifié est un référentiel Git valide
@@ -57,13 +96,12 @@ if (isset($_POST['submit'])) {
             $output_checkout_branch = shell_exec($command_checkout_branch);
             var_dump($output_checkout_branch);
 
-            // Fusionner les branches branch1 et branch2 dans la nouvelle branche
-            $commit_message = 'Commit de fusion de ' . $branch1 . ' avec ' . $branch2;
+            $command_merge = "git merge $branch1 $branch2";
             $output_merge = shell_exec($command_merge);
             var_dump($output_merge);
 
             // Effectuer le commit des modifications de fusion
-            $commit_message = "Commit de fusion de $branch1 avec $branch2";
+            $commit_message = 'Commit de fusion de'.$branch1. 'avec' .$branch2;
             $command_commit = "git commit -am '$commit_message'";
             $output_commit = shell_exec($command_commit);
             var_dump($output_commit);
@@ -81,7 +119,7 @@ if (isset($_POST['submit'])) {
             echo "<h2>La branche '$new_branch_name' existe déjà.</h2>";
         }
 
-        $command_push = "git push --set-upstream origin $new_branch_name $repo_url";
+        $command_push = "git push --set-upstream origin $new_branch_name";
         $output_push = shell_exec($command_push);
         var_dump($output_push);
 
