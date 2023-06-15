@@ -3,6 +3,11 @@
 <head>
     <title>Fusion de branches Git</title>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <style>
+        .center-form {
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -10,7 +15,7 @@
             <img src="exalog.png" alt="Logo" class="logo">
         </div>
         <h1>Fusion de branches Git</h1>
-        <form action="merge.php" method="POST" target="blank">
+        <form action="merge.php" method="POST" target="blank" class="center-form">
         
             <label for="branch1">Branche 1:</label>
             <select name="branch1" id="branch1" required>
@@ -27,14 +32,20 @@
                 <option value="other_branch">Autre branche</option>
                 <!-- Ajoutez d'autres options pour les branches -->
             </select><br><br>
+            
 
             <label for="new_branch_name">Nouvelle branche:</label>
-            <input type="text" name="new_branch_name" id="new_branch_name" required><br><br>
+            <input type="text" name="new_branch_name" id="new_branch_name" placeholder="Insérer le nom de la nouvelle branche" style="width: 300px;" required><br><br>
 
-            <input type="submit" name = "submit" value="Fusionner et obtenir les commits">
+            <input type="checkbox" name="delete_clone" id="delete_clone">
+            <label for="delete_clone">Supprimer le clone du référentiel après la fusion</label><br><br>
+
+            <input type="submit" name="submit" class="button" value="Fusionner et obtenir les commits">
+
         </form>
     </div>
 </body>
 </html>
+
 
 
