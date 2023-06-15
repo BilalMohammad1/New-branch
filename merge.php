@@ -83,7 +83,7 @@ if (isset($_POST['submit'])) {
             $command_remote_branch = " git ls-remote --refs $repo_url | awk '{print $2}' | sed 's/refs\/heads\///' | sed 's/refs\/tags\///'";
             $output_remote_branch = shell_exec($command_remote_branch);
 
-            $command_check_branch1 = "git checkout -b $branch1";
+            $command_check_branch1 = "git checkout $branch1";
             $output_check_branch1 = shell_exec($command_check_branch1);
             var_dump($output_check_branch1);
 
@@ -96,7 +96,7 @@ if (isset($_POST['submit'])) {
             $output_checkout_branch = shell_exec($command_checkout_branch);
             var_dump($output_checkout_branch);
 
-            $command_merge = "git merge $branch1 $branch2";
+            $command_merge = "git merge --no-ff --no-commit $branch1 $branch2";
             $output_merge = shell_exec($command_merge);
             var_dump($output_merge);
 
@@ -107,7 +107,7 @@ if (isset($_POST['submit'])) {
             var_dump($output_commit);
 
             // Obtenir les commits entre les branches fusionnées
-            $command_log = "git log --oneline $branch1..$branch2";
+            $command_log = "git --no-pager -log --oneline $branch1..$branch2";
             $output_log = shell_exec($command_log);
             var_dump($output_log);
 
