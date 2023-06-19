@@ -3,6 +3,7 @@
 <head>
     <title>Fusion de branches Git</title>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="utd-8">
     <style>
         .center-form {
             text-align: center;
